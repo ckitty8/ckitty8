@@ -87,3 +87,5 @@ Aucune dépendance externe : tout fonctionne hors-ligne, y compris sans connexio
 - Maquettes et captures d'écran : [`docs/maquettes/`](../docs/maquettes/)
 - Règles de contribution (lisibilité, commentaires, maquette avant code, cohérence, DAT) :
   [`CLAUDE.md`](../CLAUDE.md)
+- Vérification des documents après chaque commit : `node scripts/verifier-docs.js`
+  (hook automatique : `git config core.hooksPath .githooks`)

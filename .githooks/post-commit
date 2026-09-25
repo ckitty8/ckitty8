@@ -1,0 +1,5 @@
+#!/bin/sh
+# Règle n°7 (CLAUDE.md) : après chaque commit, vérifier tous les documents.
+# Activation (une fois par poste) : git config core.hooksPath .githooks
+# Le hook signale les écarts sans annuler le commit : corriger dans un commit suivant.
+node "$(git rev-parse --show-toplevel)/scripts/verifier-docs.js"

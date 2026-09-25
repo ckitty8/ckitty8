@@ -4,7 +4,9 @@ Ce fichier est lu automatiquement au début de chaque session Claude Code.
 Les règles ci-dessous sont **permanentes** : elles s'appliquent à toute évolution du dépôt,
 sauf consigne contraire explicite du porteur du projet.
 
-## Les 5 règles
+## Les règles
+
+> Numérotation reprise des instructions du porteur du projet (pas de règle n°6 à ce jour).
 
 1. **Code lisible et modifiable par un tech lead humain.**
    - Pas de framework, de build ou de dépendance ajoutés sans nécessité démontrée.
@@ -35,6 +37,13 @@ sauf consigne contraire explicite du porteur du projet.
    - Toute modification de menu, d'écran, de champ, de règle de calcul ou de stockage met à
      jour le DAT **dans le même commit**, et ajoute une ligne à son historique.
 
+7. **À la fin de chaque commit, vérifier tous les documents.**
+   - Relire `CLAUDE.md`, `docs/DAT.md`, `roadmap-app/README.md` et les captures de
+     `docs/maquettes/` : ils doivent décrire le code tel qu'il est après le commit.
+   - Lancer `node scripts/verifier-docs.js` (automatique après chaque commit si le hook est
+     activé : `git config core.hooksPath .githooks`).
+   - Tout écart signalé est corrigé dans un commit suivant, avant de passer à autre chose.
+
 ## Check-list avant chaque commit
 
 - [ ] Maquette PNG faite et validée (si changement d'écran)
@@ -42,3 +51,8 @@ sauf consigne contraire explicite du porteur du projet.
 - [ ] Référentiels / calculs centralisés (pas de duplication)
 - [ ] `docs/DAT.md` à jour + ligne d'historique
 - [ ] Captures `docs/maquettes/etat-actuel/` régénérées (si changement visuel)
+
+## Après chaque commit
+
+- [ ] `node scripts/verifier-docs.js` → « ✔ Documents vérifiés »
+- [ ] Relecture humaine des documents : README, DAT, CLAUDE.md cohérents entre eux

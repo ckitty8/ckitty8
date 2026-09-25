@@ -1,11 +1,13 @@
 # DAT — Document d'Architecture Technique · Roadmap PM
 
 > Document vivant : à mettre à jour à **chaque** évolution (menus, écrans, champs, règles,
-> stockage). Voir la règle n°5 dans `CLAUDE.md`.
+> stockage). Voir la règle n°5 dans `CLAUDE.md`. Sa cohérence avec le code est contrôlée
+> après chaque commit par `scripts/verifier-docs.js` (règle n°7).
 
 | Version | Date       | Objet |
 |---------|------------|-------|
 | 0.1     | 2026-09-25 | Création du DAT à partir de l'existant (v1 de l'application) |
+| 0.2     | 2026-09-25 | Règle n°7 : script de vérification des documents + hook post-commit (§ 7, § 8) |
 
 ---
 
@@ -189,6 +191,8 @@ Incohérences connues dans l'existant (à arbitrer, non corrigées) :
 ```
 ckitty8/
 ├── CLAUDE.md                      # règles de travail permanentes
+├── .githooks/post-commit          # lance la vérification des documents après commit
+├── scripts/verifier-docs.js       # contrôle doc ↔ code (règle n°7)
 ├── docs/
 │   ├── DAT.md                     # ce document
 │   └── maquettes/
@@ -197,3 +201,19 @@ ckitty8/
     ├── index.html · style.css · data.js · app.js
     └── README.md                  # guide utilisateur
 ```
+
+## 8. Outillage qualité documentaire
+
+`scripts/verifier-docs.js` (Node.js, sans dépendance) vérifie après chaque commit :
+
+| Contrôle | Source (code) | Cible (documentation) |
+|----------|---------------|------------------------|
+| Documents présents | — | `CLAUDE.md`, `docs/DAT.md`, `roadmap-app/README.md` |
+| Menus décrits | `data-view` des boutons de `index.html` | § 3.1 |
+| Champs décrits | clés de `FIELD_LABELS` (`data.js`) | § 4.1 |
+| Fonctions existantes | fonctions `render*` / `compute*` citées | `app.js` |
+| Captures existantes | fichiers `.png` cités | `docs/maquettes/etat-actuel/` |
+| DAT suivi | code modifié dans le dernier commit | `docs/DAT.md` modifié aussi |
+
+Activation du hook, une fois par poste : `git config core.hooksPath .githooks`.
+Le hook **signale** sans annuler le commit ; les écarts sont corrigés au commit suivant.
