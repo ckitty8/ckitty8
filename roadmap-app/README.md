@@ -80,3 +80,10 @@ roadmap-app/
 ```
 
 Aucune dépendance externe : tout fonctionne hors-ligne, y compris sans connexion réseau.
+
+## Documentation technique
+
+- Architecture, menus, modèle de données et règles métier : [`docs/DAT.md`](../docs/DAT.md)
+- Maquettes et captures d'écran : [`docs/maquettes/`](../docs/maquettes/)
+- Règles de contribution (lisibilité, commentaires, maquette avant code, cohérence, DAT) :
+  [`CLAUDE.md`](../CLAUDE.md)
