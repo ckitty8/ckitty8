@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Succession Famille</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">🌳</span>
+      <div>
+        <div class="brand-title">Succession&nbsp;Famille</div>
+        <div class="brand-sub">Enfants &amp; petits-enfants</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-view="dashboard"><span>📊</span> Synthèse</button>
+      <button class="nav-btn" data-view="famille"><span>👪</span> Famille</button>
+      <button class="nav-btn" data-view="patrimoine"><span>🏠</span> Patrimoine</button>
+      <button class="nav-btn" data-view="donations"><span>🎁</span> Donations</button>
+      <button class="nav-btn" data-view="succession"><span>⚖️</span> Simulation</button>
+      <button class="nav-btn" data-view="demarches"><span>✅</span> Démarches</button>
+    </nav>
+    <div class="sidebar-footer">
+      <button id="btn-print" class="ghost-btn">🖨 Imprimer / PDF</button>
+      <button id="btn-export" class="ghost-btn">⬇ Exporter (JSON)</button>
+      <button id="btn-import" class="ghost-btn">⬆ Importer (JSON)</button>
+      <button id="btn-empty" class="ghost-btn">＋ Nouveau dossier vide</button>
+      <button id="btn-reset" class="ghost-btn danger">↺ Exemple de démonstration</button>
+      <input type="file" id="import-input" accept=".json" hidden>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1 id="dossier-title">Dossier de succession</h1>
+        <span id="dossier-sub" class="muted"></span>
+      </div>
+      <label class="refdate">
+        Date de référence
+        <input type="date" id="ref-date">
+      </label>
+    </header>
+
+    <div class="disclaimer">
+      ⚠️ Simulation indicative selon le droit civil et fiscal français (barèmes 2026). Elle ne remplace pas
+      l'avis d'un notaire, seul habilité à établir les actes de la succession.
+    </div>
+
+    <section id="view-dashboard" class="view active"></section>
+    <section id="view-famille" class="view"></section>
+    <section id="view-patrimoine" class="view"></section>
+    <section id="view-donations" class="view"></section>
+    <section id="view-succession" class="view"></section>
+    <section id="view-demarches" class="view"></section>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="calc.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
