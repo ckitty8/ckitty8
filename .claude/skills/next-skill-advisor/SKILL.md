@@ -38,7 +38,7 @@ Respect the project's constraints when recommending: for example, do not suggest
 | Behaviour, setup or API changed; README/runbook stale | `documentation` | Keep docs in sync with the change |
 | Production incident, outage, hotfix just shipped | `incident-response` | Triage, comms, blameless postmortem |
 
-If the library holds other skills (list them from the available-skills listing), consider them too; the table is a default, not a limit.
+Only recommend skills that actually exist in this project: check `.claude/skills/` and the available-skills listing. If a row's skill is absent (not installed here on purpose, or already covered by a project skill or a CLAUDE.md rule), skip the row; never suggest a duplicate of something the project already has.
 
 ## 3. Rank and answer
 
