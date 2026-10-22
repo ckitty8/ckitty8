@@ -15,6 +15,16 @@ Gather facts, don't guess:
 - What the conversation was about: new feature, refactor, bug fix, infra/config, docs only.
 - Signals: migrations or schema changes, new endpoints/services, touched tests (or absence of them), TODO/FIXME or workarounds added, outage or hotfix, README/docs stale.
 
+## 1b. Check the project's own rules first
+
+Before using the library table, look for what this project already requires at the end of a change:
+- `CLAUDE.md` at the repo root: sections such as "Check-list avant chaque commit", "Après chaque commit", "Revue qualité", or rules about docs, tests, versioning, deployment.
+- Project skills in `.claude/skills/` that are not part of the generic library (e.g. `revue-qualite`), and scripts the project names (`verifier-docs.js`, `audit-code.js`, test commands).
+
+List these as **project steps** and put them first in the answer: they are mandatory for the project, the library skills are suggestions. Quote the rule's source (file and section). If a project skill covers the same ground as a library skill (e.g. `revue-qualite` vs `code-review`/`tech-debt`), recommend the project one and say it replaces the generic one.
+
+Respect the project's constraints when recommending: for example, do not suggest an action the project forbids (touching data, pushing to a given branch).
+
 ## 2. Match to the library
 
 | Signal in the session | Skill | Why now |
@@ -32,12 +42,15 @@ If the library holds other skills (list them from the available-skills listing),
 
 ## 3. Rank and answer
 
-Pick at most 3, ordered by timing: what should happen before merge/deploy first, after-the-fact work (docs, debt, postmortem) last. Skip skills with no real signal; saying "nothing needed" is a valid answer.
+Project steps (section 1b) come first, then at most 3 library skills, ordered by timing: what should happen before merge/deploy first, after-the-fact work (docs, debt, postmortem) last. Skip skills with no real signal; saying "nothing needed" is a valid answer.
 
 Output format, short:
 
 ```
 Session: <one line on what was done>
+
+Project steps (from CLAUDE.md / project skills)
+- <step> — <source: file § section>
 
 Recommended next
 1. /<skill> — <the concrete signal that triggers it, e.g. "3 files in src/api changed, no tests added">
@@ -52,4 +65,4 @@ Then ask which one to launch. Only invoke the chosen skill after the user confir
 
 - Ground every recommendation in something observed (a file, a commit, a stated goal). No generic advice.
 - Don't recommend a skill that was already run this session unless new changes landed since.
-- Keep it under ~15 lines.
+- Keep it under ~20 lines.
