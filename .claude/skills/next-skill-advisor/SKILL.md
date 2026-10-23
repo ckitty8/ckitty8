@@ -29,6 +29,7 @@ Respect the project's constraints when recommending: for example, do not suggest
 
 | Signal in the session | Skill | Why now |
 |---|---|---|
+| Pages, routes, menus or data model added/changed; docs may be stale | `coherence-site` | Check navigation, naming, code vs database vs docs still line up |
 | Diff ready, branch about to be merged or PR opened | `code-review` | Catch security/perf/correctness issues before merge |
 | New code with few or no tests, risky logic changed | `testing-strategy` | Decide what coverage is actually needed |
 | Release, migration, feature flag, going to prod | `deploy-checklist` | Verify CI, approvals, rollback triggers |
